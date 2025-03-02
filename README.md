@@ -415,9 +415,7 @@ High variance (overfitting) occurs when a model captures noise in the training d
 
 [![L1 Vs L2 Regularzation Methods](https://img.youtube.com/vi/aBgMRXSqd04/maxresdefault.jpg)](https://youtu.be/aBgMRXSqd04)
 
-[![Bagging vs Boosting](https://github.com/user-attachments/assets/c600802c-82b6-4b7a-818f-e74e1e427be1)](https://youtu.be/tjy0yL1rRRU)
-
-## Advanced Classification Methods
+## Unsupervised Classification Methods
 
 ### K-Nearest Neighbors (KNN)
 
@@ -454,15 +452,18 @@ Decision Trees split data based on feature tests to predict outcomes, forming a 
 - **Decision Trees:**  
   - Split data using criteria like information gain or Gini impurity.
   - Highly interpretable.
-- **Pruning:**  
-  - Prevents overfitting by trimming unimportant branches.
-- **Random Forests:**  
-  - Use bagging and random feature selection.
-  - Provide feature importance measures.
 
 ![Decision Tree Example](https://github.com/user-attachments/assets/ffada2e4-eeac-4c18-945d-49abb7118930)
   
 *Figure: A decision tree example for the Iris dataset.*
+
+- **Pruning:**  
+  - Prevents overfitting by trimming unimportant branches.
+  - [![Bagging vs Boosting](https://github.com/user-attachments/assets/c600802c-82b6-4b7a-818f-e74e1e427be1)](https://youtu.be/tjy0yL1rRRU)
+
+- **Random Forests:**  
+  - Use bagging and random feature selection.
+  - Provide feature importance measures.
 
 ![Random Forest Illustration](https://github.com/user-attachments/assets/032b91d7-7bb0-4978-8973-e6edbe75c89c)
 
@@ -526,9 +527,12 @@ TF-IDF weights text features by emphasizing terms that are frequent in a documen
 ---
 
 # Further Reading
+
+### Sklearn Documentation
+
 ![image](https://github.com/user-attachments/assets/a41a4bff-325d-44e6-9dd9-6cc862d94057)  
 
-[Sklearn Documentation](https://scikit-learn.org/stable/supervised_learning.html)
+[Sklearn Documentation link - Press here](https://scikit-learn.org/stable/supervised_learning.html)
 
 ## Practical Tools & Resources
 
@@ -609,6 +613,7 @@ An interactive plotting library for creating dynamic, publication-quality visual
 - **Information Gain:** Reduction in impurity from a split.
 - **Pruning:** Process to avoid overfitting.
 - **Bagging:** Bootstrap aggregating.
+  [![ Bootstrap Aggregating - Bagging](https://github.com/user-attachments/assets/7400fa6e-54d3-4da2-b3cd-88ab283d6ec5)](https://www.youtube.com/watch?v=2Mg8QD0F1dQ)
 - **Random Forest:** Ensemble of decision trees.
 - **Feature Importance:** Contribution measure of a feature.
 - **Out-of-Bag Error:** Internal error estimate.
