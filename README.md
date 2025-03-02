@@ -528,19 +528,33 @@ TF-IDF weights text features by emphasizing terms that are frequent in a documen
 
 # Further Reading
 
-### Sklearn Documentation
+## Sklearn Documentation
 
 ![image](https://github.com/user-attachments/assets/a41a4bff-325d-44e6-9dd9-6cc862d94057)  
 
 [Sklearn Documentation link - Press here](https://scikit-learn.org/stable/supervised_learning.html)
 
-## Practical Tools & Resources
+#
+[Deep Learning Study Guidebook](https://github.com/ShovalBenjer/Housing_Price_Prediction_Advanced_Regresson_Kaggle)
+
+## Books
+[The Elements of Statistical Learning, Data mining, inference and predicition - Trevor Hastie](https://github.com/ShovalBenjer/Machine_Learning_Study_Guidebook)
+
+[An introduction to Statistical learning with applications in Python - Gareth James, Daniella Witten](https://github.com/ShovalBenjer/Machine_Learning_Study_Guidebook/blob/main/docs/An%20Introduction%20to%20Statistical%20Learning_Gareth%20James.pdf)
+
+# Practical Tools & Resources
 
 ### Kaggle
 A platform for data science competitions, datasets, and collaborative learning.
 - **Competitions:** Real-world problems with leaderboards.
 - **Datasets:** Diverse and extensive collections for practice.
 - **Notebooks & Forums:** Community sharing of code and strategies.
+
+Check my past kaggle projects:
+
+[Regresson Methods](https://github.com/ShovalBenjer/Housing_Price_Prediction_Advanced_Regresson_Kaggle)
+
+[Classification Methods](https://github.com/ShovalBenjer/Titanic---Machine-Learning-from-Disaster)
 
 ### PyPI
 - **PyPI:** The Python Package Index, hosting libraries like scikit-learn, TensorFlow, and more.
