@@ -523,6 +523,13 @@ TF-IDF weights text features by emphasizing terms that are frequent in a documen
 - **IDF:** Logarithmic measure that downweights common terms.
 - **Application:** Enhances text classification and search by highlighting distinctive words.
 
+---
+
+# Further Reading
+![image](https://github.com/user-attachments/assets/a41a4bff-325d-44e6-9dd9-6cc862d94057)  
+
+[Sklearn Documentation](https://scikit-learn.org/stable/supervised_learning.html)
+
 ## Practical Tools & Resources
 
 ### Kaggle
@@ -531,8 +538,7 @@ A platform for data science competitions, datasets, and collaborative learning.
 - **Datasets:** Diverse and extensive collections for practice.
 - **Notebooks & Forums:** Community sharing of code and strategies.
 
-### GitHub & PyPI
-- **GitHub:** Repository hosting for code collaboration and sharing.
+### PyPI
 - **PyPI:** The Python Package Index, hosting libraries like scikit-learn, TensorFlow, and more.
 
 ### Plotly
