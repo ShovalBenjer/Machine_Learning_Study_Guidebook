@@ -1,3 +1,429 @@
+# Machine Learning Comprehensive Study Guide
+
+## Introduction
+
+This comprehensive guide covers key topics in machine learning—from fundamental concepts to advanced techniques. It's designed to serve as both a reference and a learning resource for students, practitioners, and enthusiasts at various stages of their machine learning journey.
+
+This study guide includes concepts from computational learning and statistical learning perspectives, aiming to provide a holistic view of machine learning.
+
+## Table of Contents
+
+- [Supervised Learning](#supervised-learning)
+  - [Overview](#supervised-learning-overview)
+  - [Training, Validation, and Testing](#training-validation-and-testing)
+  - [Linear Regression](#linear-regression)
+    - [Overview](#linear-regression-overview)
+    - [Mathematical Formulation](#mathematical-formulation-linear-regression)
+    - [Loss Function](#loss-function-linear-regression)
+    - [Error Metrics](#error-metrics-linear-regression)
+    - [Ridge and Lasso Regression & Regularization](#ridge-and-lasso-regression--regularization)
+  - [Loss Functions](#loss-functions)
+  - [Gradient Descent](#gradient-descent)
+  - [Stochastic Gradient Descent](#stochastic-gradient-descent)
+  - [Feature Normalization](#feature-normalization)
+  - [Classification](#classification)
+  - [Logistic Regression](#logistic-regression)
+    - [Overview](#logistic-regression-overview)
+    - [Mathematical Formulation](#mathematical-formulation-logistic-regression)
+    - [Loss Function](#loss-function-logistic-regression)
+    - [Gradient Descent](#gradient-descent-logistic-regression)
+  - [Cross Entropy](#cross-entropy)
+  - [Multi-Category Classification](#multi-category-classification)
+  - [One vs. One Multi-Class Classification](#one-vs-one-multi-class-classification)
+  - [Multiclass Classification Extensions](#multiclass-classification-extensions)
+- [Model Evaluation](#model-evaluation)
+  - [Bias vs. Variance Trade-off](#bias-vs-variance-trade-off)
+  - [Key Performance Indicators (KPIs)](#key-performance-indicators-kpis)
+  - [Feature Selection](#feature-selection)
+  - [Validation & Cross-Validation](#validation--cross-validation)
+  - [Data Preprocessing, Feature Engineering & Encoding](#data-preprocessing-feature-engineering--encoding)
+- [Fighting High Variance (Overfitting)](#fighting-high-variance-overfitting)
+- [Advanced Classification Methods](#advanced-classification-methods)
+  - [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
+    - [Overview](#knn-overview)
+    - [Algorithm](#knn-algorithm)
+  - [Bayesian Classifiers](#bayesian-classifiers)
+  - [Decision Trees & Random Forests](#decision-trees--random-forests)
+  - [Support Vector Machines (SVM)](#support-vector-machines-svm)
+    - [Overview](#svm-overview)
+    - [Kernels](#kernels-svm)
+- [Unsupervised Learning](#unsupervised-learning)
+  - [Overview](#unsupervised-learning-overview)
+  - [Principal Component Analysis (PCA)](#principal-component-analysis-pca)
+    - [Overview](#pca-overview)
+    - [Mathematical Formulation](#mathematical-formulation-pca)
+  - [K-Means Clustering](#k-means-clustering)
+  - [Hierarchical Clustering](#hierarchical-clustering)
+- [Linear Algebra Fundamentals](#linear-algebra-fundamentals)
+  - [Inner/Scalar Product](#inner-scalar-product)
+  - [L-norms](#l-norms)
+  - [Metric Distance](#metric-distance)
+- [Text Feature Extraction](#text-feature-extraction)
+- [Practical Tools & Resources](#practical-tools--resources)
+
+## Supervised Learning
+
+### Supervised Learning Overview
+
+Supervised learning is a field in machine learning where we have data pairs that include inputs and their corresponding target outputs. The goal is to find a model that maps from inputs to outputs.
+
+Learning is based on labeled examples, and we use an algorithm to predict outputs for new, unseen data.
+
+#### Stages:
+1. **Exploration** - Examining the relationships between features and understanding the nature of the data.
+2. **Model Creation** - Building models that can map inputs to their target outputs.
+3. **Model Evaluation** - Testing the performance of the model on unseen data.
+4. **Synthesis** - Combining steps 1-3 to develop a unified methodology that addresses the problem in the best way possible.
+
+#### Features
+- **Numerical features**: Features that represent numerical values.
+- **Categorical features**: Features that represent categories or groups.
+
+### Training, Validation, and Testing
+
+In supervised learning, where y = h(x), we're trying to find a function h that can map input x to output y.
+
+The function takes input x and parameters that need to be learned from the data. By finding optimal parameters, we can make the model predict outputs with high accuracy, minimizing the prediction error.
+
+#### Stages:
+1. **Training** - Using the training set to learn the model parameters.
+2. **Validation** - Using a separate set to tune hyperparameters and make sure we're not overfitting.
+3. **Final Test** - Using a third, completely unseen dataset to evaluate the model's performance.
+
+## Linear Regression
+
+### Linear Regression Overview
+
+Linear Regression is a supervised learning technique for modeling the relationship between a numeric target and one or more features by fitting a linear equation. It's one of the most fundamental and widely used algorithms in machine learning.
+
+From a computational learning perspective, linear regression is a method that predicts features based on a large database.
+
+### Mathematical Formulation (Linear Regression)
+We input two types of data:
+
+1. **Feature Matrix** $X$: An $n \times d$ matrix where each row is a sample ($n$ samples) and each column represents features ($d$ features).
+2. **Observation Vector** $y$: A column vector of size $n$ containing the observations/results for each sample.
+
+In linear regression, we aim to find a straight line that best describes the relationship between the samples $X$ and observations $y$. The equation is:
+$y = \omega_0 + X \cdot \hat{\omega}$
+
+Because linear regression is used for stochastic data (data without a single mathematical relationship, with noise depending on the samples we took), the equation includes an error term:
+$y = \hat{y} + \varepsilon$
+
+Here:
+- $y$ is the actual result,
+- $\varepsilon$ represents the error (normally distributed with mean 0), and
+- $\hat{y}$ is our prediction based on a specific input.
+
+**Geometrical Illustration:** [PLACEHOLDER FOR GEOMETRICAL ILLUSTRATION: Shows $\hat{y}$ as the projection of $y$ onto the space spanned by features $X$]
+
+Geometrically, $\hat{y}$ can be visualized as the projection of $y$ onto the space spanned by the features $X$. For instance, with 2 features, $y$ would be in a 3-dimensional space, and $\hat{y}$ would be its projection onto the plane spanned by those two features.
+
+To incorporate the intercept term $\omega_0$ into matrix operations, we use an augmented feature matrix $\tilde{X}$. This matrix is the same as $X$ but with an added column of ones as the first column, ensuring $\omega_0$ is not multiplied by any feature:
+$\hat{y} = \tilde{X} \cdot \hat{\omega}$
+
+### Model Formulation (Linear Regression)
+For a single variable, the model is:
+$\hat{y} = w_0 + w_1 x$
+
+In the multivariable case:
+$\hat{y} = w_0 + w_1 x_1 + \dots + w_p x_p$
+
+Where:
+- $w_0$ is the intercept (bias)
+- $w_1, ..., w_p$ are the weights/coefficients
+- $x_1, ..., x_p$ are the input feature values
+
+Given a dataset D = {(x_i, t_i)}, our goal is to find a function h(x) that closely approximates the true function.
+
+![Linear Regression Fit](https://upload.wikimedia.org/wikipedia/commons/e/ed/Residuals_for_Linear_Regression_Fit.png)
+*Figure: A scatterplot showing a red best-fit line with residuals as vertical lines.*
+
+### Key Concepts (Linear Regression)
+
+- **Linear Hypothesis:** The assumption that the relationship between features and the target is linear.
+- **Parameters/Weights:**
+  - **Intercept/Bias ($w_0$):** The predicted value when all features are zero.
+  - **Coefficients ($w_1, ..., w_p$):** Slopes indicating how each feature influences the prediction.
+- **Training vs. Test Error:** Training error is measured on the data used for training, while generalization (test) error reflects performance on unseen data.
+- **Outliers:** Data points that can disproportionately influence the model, potentially skewing results.
+
+The objective is to determine the parameters ($w_0, w_1, ..., w_n$) or $\hat{\omega}$ that minimize the discrepancy between the model's predictions and the actual values in dataset D.
+
+[![An Intuitive Introduction to Linear Regression](https://img.youtube.com/vi/3g-e2aiRfbU/maxresdefault.jpg)](https://youtu.be/3g-e2aiRfbU)
+
+### Loss Function (Linear Regression)
+
+To find the optimal model, we need to define a **loss function** that quantifies the error of our predictions. We aim to find the parameters $\omega$ that minimize this loss. A common loss function for linear regression is the **Sum of Squared Errors (SSE)**, also known as the **LOSS** function in this context:
+
+#### Loss Function
+$LOSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$
+
+Other related loss and error functions include:
+
+1) **Sum of Squared Errors (SSE)**:
+   $\sum(t_i - h(x_i))^2$
+
+2) **Mean Squared Error (MSE)**:
+   $\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i-\hat{y}_i)^2$
+
+3) **Root Mean Squared Error (RMSE)**:
+   $\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i-\hat{y}_i)^2}$
+
+4) **Mean Absolute Error (MAE):**
+   $\text{MAE} = \frac{1}{n}\sum |y - \hat{y}|$
+
+5) **R-squared:** Proportion of variance in the target explained by the model.
+
+The analytical solution that provides the optimal weight vector $\hat{w}$ minimizing the LOSS function is given by the **Normal Equation**:
+$\hat{w} = (\tilde{X}^T\tilde{X})^{-1} \tilde{X}^Ty$
+
+Consequently, the predicted values $\hat{y}$ are:
+$\hat{y} = \tilde{X}(\tilde{X}^T\tilde{X})^{-1}\tilde{X}^T \cdot y$
+
+### Error Metrics (Linear Regression)
+
+To evaluate the performance of our linear regression model, especially on test data ($x_{test}$), we use several error metrics:
+
+- **Residual Sum of Squares (RSS)**: Measures the variance of the residuals (prediction errors).
+  $\text{RSS} = \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2$
+
+- **Total Sum of Squares (TSS)**: Represents the total variance in the dependent variable.
+  $\text{TSS} = \sum_{i=1}^{n} (y_i - \bar{y})^2 \rightarrow \text{Variance}$
+
+- **Error Sum of Squares (ESS)**: Measures the sum of the squared differences between the actual and predicted values.
+  $\text{ESS} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$
+
+  Where $\bar{y} = \frac{\sum y_i}{N}$ is the mean of the observed values $y_i$.
+
+- **Mean Square Error (MSE)**: The average of the squared errors.
+  $\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$
+
+- **Mean Square Residual (MSR)**: The RSS normalized by the number of features.
+  $\text{MSR} = \frac{\text{RSS}}{d}$
+
+  Where $n$ is the number of samples, and $d$ is the number of features.
+
+- **Coefficient of Determination ($R^2$)**:  Indicates the proportion of the variance in the dependent variable that is predictable from the independent variables. It ranges from 0 to 1, with values closer to 1 indicating a better fit.
+  $R^2 = r^2 = \frac{\text{SSR}}{\text{SST}} \in [0,1]$
+
+  As $r^2$ approaches 1, the model's fit to the data improves.
+
+### Ridge and Lasso Regression & Regularization
+
+Ridge and Lasso Regression are extensions of linear regression designed to address **overfitting** and improve model generalization, especially when dealing with complex datasets or multicollinearity.  They achieve this by adding a **regularization term** to the Loss function, which penalizes large weights.
+
+Overfitting occurs when a model learns the training data too well, including its noise, leading to poor performance on unseen data. Regularization helps to constrain the model, making it less sensitive to noise and thus more likely to generalize well.
+
+**Why Regularization?**
+
+1. **Preventing Overfitting:** By penalizing large weights, regularization discourages overly complex models that might fit the training data noise.
+2. **Improving Model Stability:** Regularization can help with numerical stability, particularly when dealing with matrices that are nearly singular (non-invertible) due to multicollinearity or small eigenvalues. In linear regression, finding the optimal weights involves inverting the matrix $(X^T X)$. If this matrix is close to singular (determinant close to zero), the inverse can be unstable and lead to very large weights. Regularization helps to stabilize this inversion process.
+
+**Regularization Penalty:**
+
+Both Ridge and Lasso Regression add a penalty term to the standard Mean Squared Error (MSE) loss function:
+
+$L_y(w) = ||\tilde{X} \cdot \hat{\omega} - y||_2^2 + \lambda_2 \cdot ||\tilde{\omega}||_2^2 + \lambda_1 \cdot ||\tilde{\omega}||_1$
+
+Here, the Loss function consists of two parts:
+
+1. **Data Fidelity Term:** $ ||\tilde{X} \cdot \hat{\omega} - y||_2^2 $ -  Measures how well the model fits the training data (Sum of Squared Errors).
+2. **Regularization Term:** $ \lambda_2 \cdot ||\tilde{\omega}||_2^2 + \lambda_1 \cdot ||\tilde{\omega}||_1 $ - Penalizes the magnitude of the weights $\tilde{\omega}$.
+
+- $\lambda_1$ and $\lambda_2$ are **regularization parameters** that control the strength of the penalty. Higher values increase the penalty, leading to smaller weights.
+- $||\tilde{\omega}||_1$ is the L1 norm of the weight vector (sum of absolute values of weights). Using the L1 norm leads to **Lasso Regression**.
+- $||\tilde{\omega}||_2^2$ is the squared L2 norm of the weight vector (sum of squared values of weights). Using the L2 norm leads to **Ridge Regression**.
+
+**Types of Regularization:**
+
+- **Ridge Regression (L2 Regularization):** Adds an L2 penalty term ($\lambda_2 \cdot ||\tilde{\omega}||_2^2$). Ridge regression shrinks all weights towards zero, but typically does not force them to be exactly zero. It is effective in reducing the impact of multicollinearity and reducing model complexity.
+
+- **Lasso Regression (L1 Regularization):** Adds an L1 penalty term ($\lambda_1 \cdot ||\tilde{\omega}||_1$). Lasso regression can drive some weights to exactly zero, effectively performing feature selection by excluding less relevant features from the model.
+
+- **Elastic Net Regularization:** Combines both L1 and L2 penalties. It balances the feature selection properties of Lasso and the weight shrinkage of Ridge, and can be particularly useful when dealing with datasets that have many correlated features.
+
+**Key Differences between Ridge and Lasso:**
+
+| Feature          | Ridge Regression (L2)                  | Lasso Regression (L1)                    |
+|-------------------|------------------------------------------|-------------------------------------------|
+| Penalty Term     | $\lambda_2 \cdot ||\tilde{\omega}||_2^2$ | $\lambda_1 \cdot ||\tilde{\omega}||_1$ |
+| Weight Shrinkage | Shrinks weights towards zero              | Shrinks weights, can force some to zero   |
+| Feature Selection| No automatic feature selection          | Performs feature selection                |
+| Multicollinearity| Effective in reducing impact             | Less effective in multicollinearity       |
+
+**Mathematical Solution for Ridge Regression:**
+
+The weight vector $\hat{\omega}$ that minimizes the Ridge regression loss function has a closed-form solution:
+
+$\hat{\omega} = (X^T X + \lambda_2 I)^{-1} X^T \cdot y$
+
+where $I$ is the identity matrix. The addition of $\lambda_2 I$ to $X^T X$ ensures that the matrix $(X^T X + \lambda_2 I)$ is invertible, even if $X^T X$ is not, thus addressing numerical instability issues.
+
+For any given $\lambda$, there exists a threshold $T$ such that minimizing $L_y(w) = ||\tilde{X} \cdot \hat{\omega} - y||_2^2 + \lambda||\tilde{\omega}||_k^k$ is equivalent to minimizing the standard least squares loss $L_y(2) = ||\tilde{X} \cdot \hat{\omega} - y||_2^2$ under the constraint $||\hat{\omega}||_2^2 \leq T$.  (Note: $\hat{\omega}$ includes $w_0$, while $\tilde{\omega}$ typically excludes $w_0$ in regularization terms).
+
+### Loss Functions
+
+The loss function measures the model's prediction error. Common loss functions include:
+
+1) **Sum of Squared Errors (SSE)**:
+   $\sum(t_i - h(x_i))^2$
+
+2) **Mean Squared Error (MSE)**:
+   $\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i-\hat{y}_i)^2$
+
+3) **Root Mean Squared Error (RMSE)**:
+   $\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i-\hat{y}_i)^2}$
+
+4) **Mean Absolute Error (MAE):**
+   $\text{MAE} = \frac{1}{n}\sum |y - \hat{y}|$
+
+5) **R-squared:** Proportion of variance in the target explained by the model.
+
+### Gradient Descent
+
+Gradient Descent is an optimization algorithm used to minimize the loss function by iteratively adjusting model parameters.
+
+#### Steps:
+1. Initialize the parameters (w⃗, w₀) randomly.
+2. Calculate the gradient of the loss function with respect to the parameters.
+3. Update the parameters ($w_i$) in the opposite direction of the gradient to minimize the loss.
+
+The update rule is:
+$\Delta w_i = -\lambda \cdot \frac{\partial \text{Loss}(w)}{\partial w_i}$
+
+Where:
+- $\lambda$ is the learning rate
+- $\frac{\partial \text{Loss}(w)}{\partial w_i}$ is the partial derivative of the loss function with respect to $w_i$.
+
+GD is an off-line algorithm, meaning we process all data before making an update. This makes it computationally expensive with large datasets.
+
+### Stochastic Gradient Descent
+
+In contrast to regular Gradient Descent, Stochastic Gradient Descent (SGD) processes data in mini-batches, making it more efficient for large datasets.
+
+#### Steps:
+1. Initialize parameters (w⃗, w₀).
+2. Shuffle and divide the dataset into m mini-batches.
+3. For each mini-batch, calculate h(x) and update the parameters.
+4. Repeat for multiple epochs (passes through the data).
+
+The update rule for SGD is:
+$\Delta w_i = -\frac{\lambda}{m} \cdot \sum(t_i - y_i)x_i$
+
+Where:
+- m is the mini-batch size
+
+SGD is more efficient than GD for large datasets because it updates parameters more frequently, potentially leading to faster convergence.
+
+The gradient computation for cross entropy loss in SGD:
+$\Delta w_i = -\frac{\lambda}{m} \cdot \sum\left(\frac{\partial \text{Loss}(t_i,y_i)}{\partial w_i}\right)$
+
+### Feature Normalization
+
+Feature normalization is critical for gradient descent to work efficiently, especially when features have different scales. It helps the algorithm converge faster and prevents features with larger scales from dominating.
+
+#### Methods:
+1) **Min-Max Scaling**:
+   $x_{\text{normalized}} = \frac{x - \min(x)}{\max(x) - \min(x)}$
+
+2) **Mean Normalization**:
+   $x_{\text{normalized}} = x - \text{mean}(x)$
+
+3) **Standard Deviation Scaling**:
+   $x_{\text{normalized}} = \frac{x}{\text{SD}(x)}$
+
+4) **Standard Normalization (Z-score)**:
+   $x_{\text{normalized}} = \frac{x - \text{mean}(x)}{\text{SD}(x)}$
+
+   This centers the data around 0 with a standard deviation of 1.
+
+## Classification
+
+### Classification Overview
+
+The goal of classification is to learn a function h(x⃗) that minimizes the loss function for dataset D = {(x_i, t_i)}, where t_i represents the class label and y = P(t=1|x) is the probability of class 1 given input x.
+
+The key difference between classification and regression is that classification predicts categorical outputs rather than continuous values.
+
+## Logistic Regression
+
+### Logistic Regression Overview
+
+Logistic Regression is used for binary classification. It models the probability of a positive class by applying the sigmoid function to a linear combination of features:
+
+$$p(x) = \frac{1}{1 + e^{-(w_0 + w_1 x_1 + \dots + w_p x_p)}}$$
+
+A probability above a chosen threshold (typically 0.5) indicates the positive class.
+
+From a computational learning perspective, unlike linear regression, in logistic regression, we're not looking for a straight line to separate the data, but rather to categorize the data into categories (typically binary, receiving 0 or 1).
+
+### Mathematical Formulation (Logistic Regression)
+
+Here, the prediction uses the **sigmoid function** ($sigm: (-\infty, \infty) \rightarrow [0,1]$):
+$\hat{y} = \frac{1}{1+e^{-(\hat{\omega} \cdot \tilde{X})}} = sigmoid(\hat{\omega} \cdot \tilde{X})$
+
+The sigmoid function is defined as:
+$y = g(z) = \frac{1}{1+e^{-z}}$
+
+where $z = w₀ + \sum w_i x_i$
+
+The sigmoid function $g(z)$ maps any real input to a value between 0 and 1, representing the probability of the positive class.
+
+![Logistic Regression Curve](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Exam_pass_logistic_curve.svg/1280px-Exam_pass_logistic_curve.svg.png)
+*Figure: The sigmoid function mapping inputs to probabilities.*
+
+### Key Concepts (Logistic Regression)
+
+- **Sigmoid Function:** Transforms any real value into a probability between 0 and 1.
+- **Binary Classification:** Predicts one of two possible classes.
+- **Odds Ratio:** Exponentiating coefficients provides the factor change in odds for a unit change in a feature.
+- **Maximum Likelihood Estimation:** The training method used to optimize model parameters.
+
+**Advantage**: Provides a probability estimate for classification, not just a class label.
+**Disadvantage**: May struggle with highly non-linear decision boundaries as it is fundamentally a linear classifier.
+
+The decision boundary in logistic regression is linear and occurs where $w⃗ \cdot x⃗ = 0$. The distance from a point $x⃗$ to the decision boundary can be expressed as:
+$\frac{w⃗ \cdot x⃗}{||w⃗||} = \frac{1}{||w⃗||} \cdot d(x⃗, w⃗)$
+
+Where $d(x⃗, w⃗)$ represents the distance from point $x⃗$ to the decision boundary.
+
+[![An Quick Intro to Logistic Regression](https://img.youtube.com/vi/EKm0spFxFG4/maxresdefault.jpg)](https://youtu.be/EKm0spFxFG4)
+
+### Loss Function (Logistic Regression)
+
+The **Loss function** for logistic regression, also known as **Binary Cross-Entropy**, is used to quantify the error between predicted probabilities and true labels:
+$L(w) = -\sum \log(\hat{y}_i^{y_i}(1 - \hat{y}_i)^{1-y_i}) = ... = (-\sum y_i \log(sigm(w \cdot x_i)) + (1-y_i) \log((1-sigm(w \cdot x_i))))$
+
+### Gradient Descent (Logistic Regression)
+
+To find the weight vector $w$ that minimizes the Loss function, we use the **Gradient Descent** optimization algorithm. This iterative method starts with an initial guess for $w_0$ and refines it over iterations to reach the optimal $w$:
+$w_i = w_{i-1} - \alpha\nabla_w L(w_{i-1})$
+
+Here, $\alpha$ is the learning rate, and $\nabla_w L(w_{i-1})$ is the gradient of the Loss function with respect to $w$ at the previous iteration $w_{i-1}$.
+
+### Cross Entropy
+
+**Cross Entropy (CE)** is the standard loss function for logistic regression, measuring the dissimilarity between the predicted probability distribution and the actual distribution of classes.
+
+For a single data point $(x,t)$, the Cross Entropy loss $C(y,t)$ is given by:
+
+$C(y,t) = -t \cdot \log(y) - (1-t) \cdot \log(1-y) =
+\begin{cases}
+-\log(y) & \text{if } t=1 \\
+-\log(1-y) & \text{if } t=0
+\end{cases}$
+
+Where:
+- $y$ is the predicted probability from the logistic regression model.
+- $t$ is the true label (0 or 1).
+
+The total Cross Entropy loss for a dataset $D$ with $m$ examples is the average loss over all examples:
+$\text{CE}_D(w) = \frac{1}{m} \cdot \sum C(y_i, t_i)$
+
+**Perplexity** is a measure of how well a probability distribution predicts a sample. In the context of Cross Entropy, perplexity can be defined as:
+$\text{Perplexity} = e^{\text{CE}_D(w)}$
+
 ### Gradient Descent with Cross Entropy
 
 To minimize the Cross Entropy loss, we use Gradient Descent to iteratively update the weights. The gradient of the Cross Entropy loss function with respect to each weight $w_i$ is:
