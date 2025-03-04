@@ -27,7 +27,6 @@ This comprehensive guide covers key topics in machine learning—from fundamenta
   - [Validation & Cross-Validation](#validation--cross-validation)
   - [Data Preprocessing, Feature Engineering & Encoding](#data-preprocessing-feature-engineering--encoding)
 - [Fighting High Variance (Overfitting)](#fighting-high-variance-overfitting)
-- [Advanced Classification Methods](#advanced-classification-methods)
   - [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
   - [Bayesian Classifiers](#bayesian-classifiers)
   - [Decision Trees & Random Forests](#decision-trees--random-forests)
@@ -318,6 +317,9 @@ Key Performance Indicators (KPIs) are metrics used to evaluate classification an
 
 **Confusion Matrix:**  
 
+<img src="https://github.com/user-attachments/assets/77990b84-99dc-465c-96a2-7bd88567386c" width="300" height="200" />
+
+
 |                      | Predicted Positive | Predicted Negative |
 |----------------------|--------------------|--------------------|
 | **Actual Positive**  | True Positive (TP) | False Negative (FN)|
@@ -340,7 +342,11 @@ $$\text{Specificity} = \frac{TN}{TN+FP}$$
 
 **ROC AUC:** The area under the Receiver Operating Characteristic curve, summarizing the trade-off between sensitivity and specificity.
 
+<img src="https://github.com/user-attachments/assets/ef7a99cf-ec8c-4299-a09c-f4beeeb2f36e" width="300" height="200" />
+
 #### Regression Metrics:
+
+![image](https://github.com/user-attachments/assets/49e0108c-3c4f-42cd-a007-29646fa07085)
 
 **Mean Squared Error (MSE):**  
 $$\text{MSE} = \frac{1}{n}\sum (y - \hat{y})^2$$
